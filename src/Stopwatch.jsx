@@ -15,6 +15,7 @@ const Stopwatch = () => {
     }
 
     return () => {
+      console.log("unmountted");
       clearInterval(intervalRef.current);
     };
   }, [isActive]);
@@ -25,11 +26,15 @@ const Stopwatch = () => {
 
   const handleStop = () => {
     setIsActive(false);
-    // setTimer(0);
   };
 
   const handleResume = () => {
     setIsActive(true);
+  };
+
+  const handleReset = () => {
+    handleStop();
+    setTimer(0);
   };
 
   return (
@@ -38,6 +43,7 @@ const Stopwatch = () => {
       <button onClick={handleStart}>Start</button>
       <button onClick={handleStop}>Stop</button>
       <button onClick={handleResume}>Resume</button>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 };
